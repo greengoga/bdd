@@ -97,7 +97,6 @@ public class CardTransferTest {
         var verificationCode = DataHelper.getVerificationCodeFor(info);
         var dashboardPage = verificationPage.validVerify(verificationCode);
 
-
         var firstCard = getFirstCardInfo();
         var secondCard = getSecondCardInfo();
         int amount = 100000;
@@ -111,8 +110,8 @@ public class CardTransferTest {
         int balanceFirstCardAfter = dashboardPage.getCardBalance(firstCard.getId());
         int balanceSecondCardAfter = dashboardPage.getCardBalance(secondCard.getId());
 
-        assertEquals(balanceFirstCardBefore + amount, balanceFirstCardAfter);
-        assertEquals(balanceSecondCardBefore - amount, balanceSecondCardAfter);
+        assertEquals(balanceFirstCardBefore, balanceFirstCardAfter, "Баланс первой карты изменился, хотя не должен был");
+        assertEquals(balanceSecondCardBefore, balanceSecondCardAfter, "Баланс второй карты изменился, хотя не должен был");
 
     }
 }
